@@ -8,12 +8,11 @@
 template <typename T>
 void array_delete(std::vector<T> &A, std::size_t index)
 {
-    std::vector<T>::iterator i;
-    for (i = index ; i < sizeof(A) - index ; i++)
+    for (std::size_t i = index ; i < A.size() - index ; i++)
     {
         A[i] = A[i + 1];
     }
-    A[i] = [];
+    A.pop_back();
 }
 
 #endif // __array_delete__
