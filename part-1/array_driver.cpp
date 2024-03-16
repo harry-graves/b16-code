@@ -11,5 +11,4 @@ int main(int argc, char **argv)
                      " at position 0 = ");
     }
     return 0;
-    // This is a test
 }

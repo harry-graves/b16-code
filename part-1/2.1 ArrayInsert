@@ -1,0 +1,12 @@
+2 Arrays
+2.1 Complexity of ArrayInsert
+
+What is the big O complexity of ArrayInsert?
+
+In the worst case, the element is to be inserted at the front of the array.
+ArrayInsert then has to increase the length of the array by 1,
+iterate through all n elements moving them back 1 place, and then inserting
+the new element at the front. Therefore, the time complexity of ArrayInsert
+is given by
+
+O(n)
