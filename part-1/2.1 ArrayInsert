@@ -7,6 +7,9 @@ In the worst case, the element is to be inserted at the front of the array.
 ArrayInsert then has to increase the length of the array by 1,
 iterate through all n elements moving them back 1 place, and then inserting
 the new element at the front. Therefore, the time complexity of ArrayInsert
-is given by
+is O(n)
 
-O(n)
+2.2 Writing ArrayDelete
+
+The function ArrayDelete has been implemented in the file array_delete.hpp
+and tested using the driver arry_delete_driver.cpp
