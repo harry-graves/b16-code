@@ -39,7 +39,7 @@ template <typename T> class Dequeue : public Queue<T>
     {
         assert(this->_size >= 1);
         this->_size--;
-        this->_position = _tail();
+        this->_position = _tail();  // The tail function does the wrapping around itself
     }
 
     // Remove all elements from the queue
