@@ -50,7 +50,7 @@ void divides(Stack<T> &stack)
     T value2 = stack.top();
     stack.pop();
 
-    stack.push(value1 / value2);
+    stack.push(value2 / value1);
 };
 
 template <typename T>
