@@ -8,6 +8,7 @@
 template <typename T> 
 void list_delete_after(Node<T> *node)
 {
+    assert(node && node->next);
     node->next = std::move(node->next->next);
 }
 
