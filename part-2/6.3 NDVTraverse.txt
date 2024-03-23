@@ -1,0 +1,12 @@
+Harry Graves
+Problem Sheet 3B16C
+Question 6.3 Traversing the nodes of a BST by non-decreasing value
+
+Pseudocode algorithm design:
+
+NDVTraverse(N):
+
+while node exists
+    Call NDVTraverse(N.left)
+    visit(N)
+    Call NDVTraverse(N.right)
