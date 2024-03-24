@@ -53,6 +53,22 @@ template <typename K, typename V, typename H> class HashTable
         std::cout << ", average: " << float(average) / _table.size() << '\n';
     }
 
+    uint32_t hash(const std::string& str, const uint32_t m)
+    {
+        // Initialize the hash value
+        uint64_t hashValue = 0;
+
+        // Compute the hash value using the division method
+        for (char c : str)
+        {
+            // Update the hash value using modular arithmetic
+            hashValue = (hashValue * 256 + static_cast<uint8_t>(c)) % m;
+        }
+
+        // Return the computed hash value
+        return static_cast<uint32_t>(hashValue);
+    }
+
   private:
     struct KeyValuePair {
         K key;

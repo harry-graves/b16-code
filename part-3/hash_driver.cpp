@@ -31,5 +31,13 @@ int main(int agrc, char **argv)
 
     std::cout << "Retrieving 'Beans' results in the pointer value "
               << hash_table.get("Beans") << "\n";
+
+    // Test the hash function
+    std::string inputString = "olleH";
+    uint32_t m = 255; // Choose a suitable value for m
+
+    uint32_t hashedValue = hash_table.hash(inputString, m);
+    std::cout << "Hashed value: " << hashedValue << std::endl;
+
     return 0;
 }
