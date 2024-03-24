@@ -7,12 +7,30 @@ the keys in a hash table that uses m chains. Assume that the universe is large, 
 show that it is possible to choose the n keys so that they all hash to the same chain. Discuss what is the
 implication on the worst case complexity of retrieving the keys from the resulting hash table.
 
-The Pigeonhole Principle states that if n items are put into m containers, with n > m, then at least one container must contain more than one item. The more keys there are (higher n), or the less chains there are
+The Pigeonhole Principle states that if n items are put into m containers, with n > m, then at least one
+container must contain more than one item. The more keys there are (higher n), or the less chains there are
 (lower m), the greater the number of keys being randomly mapped to the same chain. In the extreme case, all
-keys can randomly be mapped to the same chain, at which point the time complexity of retrieving a key from the
-hash table is just as fast as the ChainRetrieve algorithm, which in the worst case much search the whole chain
-(implemented as a linked list), resulting in time complexity Θ.
+keys can randomly be mapped to the same chain, at which point the time complexity of retrieving a key from
+the hash table is just as fast as the ChainRetrieve algorithm, which in the worst case much search the whole
+chain (implemented as a linked list), resulting in time complexity Θ.
 
-8.2 Consider a file such as a photo or a video. Explain how a hash function can be used to create a compact“signature” of the file to verify its integrity. Specifically, explain how knowledge of the signature can be used to tell with high probability whether the file has been modified without requiring knowledge of the original file. Explain how you would choose the size m of the hash space for this application.
+8.2 Consider a file such as a photo or a video. Explain how a hash function can be used to create a compact
+“signature” of the file to verify its integrity. Specifically, explain how knowledge of the signature can be
+used to tell with high probability whether the file has been modified without requiring knowledge of the
+original file. Explain how you would choose the size m of the hash space for this application.
 
-A hash function can be applied to the bits that are representing the image in order to create a signature. This signature can then be compared between different versions of the image to determine whether the image has changed. The higher the number of chains m, the larger the signature, and hence the higher the probability of successfully detecting tampering.
+A hash function can be applied to the bits that are representing the image in order to create a signature.
+This signature can then be compared between different versions of the image to determine whether the image has
+changed. The higher the number of chains m, the larger the signature, and hence the higher the probability of
+successfully detecting tampering.
+
+8.4 Show that choosing m = 255 in the previous question results in hashes that are invariant to permutation of
+the characters in the string (meaning for example that h(ciao) = h(oaic)). Discuss whether this is a desirable
+property or not.
+
+Setting num_chains to 255 in hash_driver.hpp results in the same hashing number even when the characters of
+the input string are reordered. This may be undesirable when used to create a "signature" as in 8.2, because
+the same pixel values in a different order would yield the same signature. On the other hand, if applied as
+a searching algorithm, this may be beneficial if the caller inputs search terms that exist in the hashing
+table but in a different order e.g. "Oxford University" rather than "University of Oxford". Therefore, this
+property may or may not be desirable based on the particular application.

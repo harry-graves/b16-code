@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-constexpr size_t num_chains = 31;
+constexpr size_t num_chains = 255;
 
 struct HashFunction {
     size_t operator()(const std::string &str)
@@ -34,9 +34,8 @@ int main(int agrc, char **argv)
 
     // Test the hash function
     std::string inputString = "olleH";
-    uint32_t m = 255; // Choose a suitable value for m
 
-    uint32_t hashedValue = hash_table.hash(inputString, m);
+    uint32_t hashedValue = hash_table.hash(inputString, num_chains);
     std::cout << "Hashed value: " << hashedValue << std::endl;
 
     return 0;
