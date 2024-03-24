@@ -1,0 +1,59 @@
+Harry Graves
+Problem Sheet 3B16C
+7 Heaps
+
+BuildHeap(A):
+For i = ⌊|A|/2⌋ − 1, . . . , 0:
+    Interpret the subarray (A[i], . . . , A[|A|−1]) as a complete binary tree S.
+    Call SiftDown(S).
+
+BuildHeapAlt(A):
+For i = 1, . . . , |A| − 1:
+    Interpret the subarray (A[0], . . . , A[i]) as a complete binary tree T and
+    let S be the subtree rooted at Ai
+    Call SiftUp(S).
+
+PriorityEnqueue(Q, x):
+    Let i ← Q.size
+    Set Q.A[i] ← x
+    Interpret the subarray (Q.A[0], . . . , Q.A[i]) as a complete binary tree T and
+    let S be the subtree rooted at Ai
+    Call SiftUp(S).
+    Set Q.size ← i + 1.
+
+
+7.1 Discuss the relation between BuildHeapAlt and PriorityEnqueue and compare the complexity of BuildHeap
+and BuildHeapAlt.
+
+PriorityEnqueue uses a similar algorithm to BuildHeapAlt in order to enqueue elements based on their priority.
+The algorithm works by adding the element to be enqueued at the bottom of a binary tree by entering it into
+the end of an array Q.A, and then calling SiftUp on this to move the enqueued element from the bottom upwards
+until it cannot be moved any higher without breaking the heap property.
+
+SiftUp and SiftDown make work proportional to the height h of the input tree, i.e. Θ(h). For complete trees,
+n is proportional to 2 to the power of h, hence SiftUp and SiftDown have complexity Θ(log(n)).
+
+From this, BuildHeap BuildHeap has complexity O(n) (given in the notes).
+BuildHeapAlt calls SiftUp on every element in the tree: i = 1, . . . , |A| − 1. Therefore, BuildHeapAlt 
+has complexity Θ(nlog(n)).
+
+Therefore, BuildHeap has lower time complexity when compared to BuildHeapAlt.
+
+7.2 Discuss whether sorting an array A can be an alternative implementation of BuildHeap.
+
+As proven in the notes, there is no way of sorting a sequence faster than in O(nlog(n)) steps if one is only
+allowed to perform pairwise element comparisons. Since BuildHeap has time complexity O(n), there is no
+advantage to using an array sorting algorithm.
+
+Further to this, just because an array is being used to represent a heap, does not mean the elements are in
+order within the array. This is because, whilst the first element in the array (corresponding to the root)
+will be the largest, the heap property holds even if the left child (second array element) is less than the
+right child (third array element).
+
+7.3 Discuss how you could use SiftUp and SiftDown to update the priority of an element in a heap, used as a
+priority queue.
+
+To increase an element's priority, it's value is increased, and to decrease its priority, its value is
+decreased. Then, SiftUp and SiftDown can both be called on the element, to move it up in the tree (and
+therefore in priority) if it is too large, or move it down in the tree (and therefore in priority) if it is
+too small (or do nothing if it still satisfies the heap property).
